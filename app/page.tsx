@@ -6,6 +6,7 @@ import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { StructuredData } from './components/StructuredData';
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
 
 // Optimized animation variants
 const fadeInUp = {
@@ -312,10 +313,10 @@ export default function Home() {
                   </Link>
                   <Link
                     href="/projects"
-                    className="relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded px-2 py-1"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded"
                   >
                     Projects
-                    <span className="absolute bottom-0 left-0 h-0.5 bg-[#040936] transition-all duration-300 w-0 group-hover:w-full"></span>
                   </Link>
                   <a
                     href="#contact"
@@ -325,32 +326,6 @@ export default function Home() {
                   >
                     Contact
                   </a>
-
-                  {/* Auth Buttons - Mobile */}
-                  <div className="mt-4 pt-4 border-t">
-                    {isLoggedIn ? (
-                      <div>
-                        <p className="text-sm text-gray-600 mb-3">Welcome, <strong>{userName}</strong></p>
-                        <button
-                          onClick={() => {
-                            handleLogout();
-                            setIsMenuOpen(false);
-                          }}
-                          className="w-full py-2.5 bg-red-600 text-white rounded-lg font-semibold text-sm hover:bg-red-700 transition-all duration-300"
-                        >
-                          Logout
-                        </button>
-                      </div>
-                    ) : (
-                      <Link
-                        href="/signup"
-                        onClick={() => setIsMenuOpen(false)}
-                        className="block w-full py-2.5 bg-[#040936] text-white rounded-lg font-semibold text-sm text-center hover:bg-[#0a1147] transition-all duration-300"
-                      >
-                        Sign Up
-                      </Link>
-                    )}
-                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -540,7 +515,7 @@ export default function Home() {
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                       </svg>
-                      Ex-Indian Army Infantry
+                      RETD Army Infantry
                     </p>
                   </div>
 
@@ -607,7 +582,7 @@ export default function Home() {
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                       </svg>
-                      Ex-Indian Army EME Corps
+                      RETD EME Corps
                     </p>
                   </div>
 
@@ -779,7 +754,7 @@ export default function Home() {
               >
                 {[
                   {
-                    title: 'Handheld Metal Detectors',
+                    title: 'Hand Metal Detectors[HMD]',
                     desc: 'Professional-grade handheld metal detectors with trained operators for quick and reliable screening at entry points and security checkpoints.',
                     features: ['Pinpoint Detection', 'Adjustable Sensitivity', 'Audio & Vibration Alert', 'Lightweight & Portable'],
                     image: '/MetalDetector.png',
@@ -1263,12 +1238,22 @@ export default function Home() {
                 <p className="text-gray-400 text-[15px] leading-relaxed mb-4">
                   Serving all districts of Gujarat including Ahmedabad, Rajkot, Jamnagar, and more with 24/7 security solutions.
                 </p>
-                <div className="flex items-center gap-2 text-gray-400 text-sm mb-6">
+                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
                   <svg className="w-5 h-5 text-[#dec3a0]" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
                   <span>+91 9426865263</span>
                 </div>
+                <a 
+                  href="mailto:airavat1@gmail.com"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#dec3a0] transition-colors text-sm mb-6 group"
+                >
+                  <svg className="w-5 h-5 text-[#dec3a0]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                  <span className="group-hover:underline">airavat1@gmail.com</span>
+                </a>
 
                 {/* Social Media Icons */}
                 <div className="flex gap-3">
@@ -1295,6 +1280,18 @@ export default function Home() {
                   >
                     <div className="w-11 h-11 rounded-full border-2 border-gray-400 flex items-center justify-center transition-all duration-300 group-hover:border-[#dec3a0] group-hover:bg-[#dec3a0] transform group-hover:-translate-y-1 group-hover:shadow-lg">
                       <FaWhatsapp className="text-gray-300 text-xl transition-colors duration-300 group-hover:text-[#040936]" />
+                    </div>
+                  </a>
+                  {/* Gmail Icon */}
+                  <a
+                    href="https://wa.me/919913136994"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                    aria-label="Chat with us on WhatsApp"
+                  >
+                    <div className="w-11 h-11 rounded-full border-2 border-gray-400 flex items-center justify-center transition-all duration-300 group-hover:border-[#dec3a0] group-hover:bg-[#dec3a0] transform group-hover:-translate-y-1 group-hover:shadow-lg">
+                      <BiLogoGmail className="text-gray-300 text-xl transition-colors duration-300 group-hover:text-[#040936]" />
                     </div>
                   </a>
                 </div>
