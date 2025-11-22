@@ -63,12 +63,12 @@ export default function Home() {
   useEffect(() => {
     // Handle loading animation
     const timeoutId = setTimeout(() => setIsLoading(false), 500);
-  
+
     // Check if user is logged in
     const token = localStorage.getItem('userToken');
     const name = localStorage.getItem('userName');
     const email = localStorage.getItem('userEmail');
-  
+
     if (token && name && email) {
       setIsLoggedIn(true);
       setUserName(name);
@@ -78,7 +78,7 @@ export default function Home() {
         email
       }));
     }
-  
+
     // Cleanup loading timeout
     return () => clearTimeout(timeoutId);
   }, []);
@@ -115,18 +115,37 @@ export default function Home() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isMenuOpen]);
 
-  // Handle smooth scroll navigation
+  // Enhanced smooth scroll handler for mobile and desktop
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      const navHeight = 80; // navbar height in pixels
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    if (!element) return;
+
+    const navbarHeight = 80; // Fixed navbar height
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - navbarHeight;
+
+    // Close menu after scroll completes (not during animation)
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScrollEnd = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsMenuOpen(false);
+        window.removeEventListener('scroll', handleScrollEnd);
+      }, 100); // Small delay after scroll stops
+    };
+
+    // Only add listener if menu is open
+    if (isMenuOpen) {
+      window.addEventListener('scroll', handleScrollEnd);
+    }
+
+    // Use requestAnimationFrame for smoother scrolling
+    requestAnimationFrame(() => {
       window.scrollTo({
-        top: elementPosition - navHeight,
+        top: offsetPosition,
         behavior: 'smooth'
       });
-    }
-    setIsMenuOpen(false);
+    });
   };
 
   // Handle form submission
@@ -183,21 +202,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      <style>{`
-        html {
-          scroll-behavior: smooth;
-        }
-        section[id] {
-          scroll-margin-top: 80px;
-        }
-      `}</style>
       <StructuredData />
       {/* Main Content Wrapper */}
       <div className="relative z-10">
         {/* Skip to main content - Accessibility */}
         <a
           href="#home"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[#040936] text-white px-4 py-2 rounded z-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#04093[...]
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[#040936] text-white px-4 py-2 rounded z-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#040936]/50"
         >
           Skip to main content
         </a>
@@ -255,7 +266,7 @@ export default function Home() {
                       e.preventDefault();
                       handleScrollToSection(item.toLowerCase());
                     }}
-                    className={`relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#04[...]
+                    className={`relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-2 focus-visible:ring-[#040936] rounded px-2 py-1 ${activeSection === item.toLowerCase() ? 'text-[#040936]' : ''
                       }`}
                     aria-current={activeSection === item.toLowerCase() ? 'page' : undefined}
                   >
@@ -268,14 +279,14 @@ export default function Home() {
 
                 <Link
                   href="/career"
-                  className="relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#04093[...]
+                  className="relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded px-2 py-1"
                 >
                   Career
                   <span className="absolute bottom-0 left-0 h-0.5 bg-[#040936] transition-all duration-300 w-0 group-hover:w-full"></span>
                 </Link>
                 <Link
                   href="/projects"
-                  className="relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#04093[...]
+                  className="relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded px-2 py-1"
                 >
                   Projects
                   <span className="absolute bottom-0 left-0 h-0.5 bg-[#040936] transition-all duration-300 w-0 group-hover:w-full"></span>
@@ -286,7 +297,7 @@ export default function Home() {
                     e.preventDefault();
                     handleScrollToSection('contact');
                   }}
-                  className={`relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0409[...]
+                  className={`relative text-gray-700 font-medium text-[15px] transition-colors duration-300 hover:text-[#040936] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded px-2 py-1 ${activeSection === 'contact' ? 'text-[#040936]' : ''
                     }`}
                   aria-current={activeSection === 'contact' ? 'page' : undefined}
                 >
@@ -315,6 +326,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Menu */}
+            {/* Mobile Menu */}
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.div
@@ -333,12 +345,12 @@ export default function Home() {
                         e.preventDefault();
                         handleScrollToSection(item.toLowerCase());
                       }}
-                      className={`block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded ${ac[...]
+                      className={`block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded ${activeSection === item.toLowerCase() ? 'text-[#040936] font-semibold' : ''}`}
                     >
                       {item}
                     </a>
                   ))}
-            
+
                   {/* Career link - Mobile */}
                   <Link
                     href="/career"
@@ -347,7 +359,7 @@ export default function Home() {
                   >
                     Career
                   </Link>
-            
+
                   <Link
                     href="/projects"
                     onClick={() => setIsMenuOpen(false)}
@@ -355,14 +367,14 @@ export default function Home() {
                   >
                     Projects
                   </Link>
-            
+
                   <a
                     href="#contact"
                     onClick={(e) => {
                       e.preventDefault();
                       handleScrollToSection('contact');
                     }}
-                    className={`block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded ${acti[...]
+                    className={`block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded ${activeSection === 'contact' ? 'text-[#040936] font-semibold' : ''}`}
                   >
                     Contact
                   </a>
@@ -413,7 +425,7 @@ export default function Home() {
                     e.preventDefault();
                     handleScrollToSection('contact');
                   }}
-                  className="px-8 py-3.5 bg-[#040936] text-white rounded-lg font-semibold text-[15px] hover:bg-[#0a1147] transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible[...]
+                  className="px-8 py-3.5 bg-[#040936] text-white rounded-lg font-semibold text-[15px] hover:bg-[#0a1147] transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-[#040936]/50 transition-all duration-300"
                 >
                   Get Started
                 </a>
@@ -423,7 +435,7 @@ export default function Home() {
                     e.preventDefault();
                     handleScrollToSection('services');
                   }}
-                  className="px-8 py-3.5 bg-white text-[#040936] rounded-lg font-semibold text-[15px] border-2 border-[#040936] hover:bg-[#040936] hover:text-white transform hover:-translate-y-1 hover[...]
+                  className="px-8 py-3.5 bg-white text-[#040936] rounded-lg font-semibold text-[15px] border-2 border-[#040936] hover:bg-[#040936] hover:text-white transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-[#040936]/50 transition-all duration-300"
                 >
                   Our Services
                 </a>
@@ -1292,7 +1304,7 @@ export default function Home() {
                   </svg>
                   <span>+91 9426865263</span>
                 </div>
-                <a 
+                <a
                   href="mailto:airavat1@gmail.com"
                   className="flex items-center gap-2 text-gray-400 hover:text-[#dec3a0] transition-colors text-sm mb-6 group"
                 >
@@ -1458,7 +1470,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Copyright */}
             <div className="border-t border-gray-800 pt-6 text-center">
               <p className="text-gray-400 text-[14px]">
