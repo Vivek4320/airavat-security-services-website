@@ -168,6 +168,11 @@ export default function Home() {
     toast.success('Logged out successfully');
   };
 
+  const scrollToSection = (id: string): void => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false); // close mobile menu after navigating
+  };
+
   return (
     <div className="min-h-screen bg-white relative">
       <StructuredData />
@@ -296,9 +301,8 @@ export default function Home() {
                     <a
                       key={item}
                       href={`#${item.toLowerCase()}`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded ${activeSection === item.toLowerCase() ? 'text-[#040936] font-semibold' : ''
-                        }`}
+                      onClick={() => scrollToSection(item.toLowerCase())}
+                      className="block py-3 text-gray-700 hover:text-[#040936] hover:pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#040936] rounded"
                     >
                       {item}
                     </a>
@@ -1244,7 +1248,7 @@ export default function Home() {
                   </svg>
                   <span>+91 9426865263</span>
                 </div>
-                <a 
+                <a
                   href="mailto:airavat1@gmail.com"
                   className="flex items-center gap-2 text-gray-400 hover:text-[#dec3a0] transition-colors text-sm mb-6 group"
                 >
@@ -1284,11 +1288,11 @@ export default function Home() {
                   </a>
                   {/* Gmail Icon */}
                   <a
-                    href="https://wa.me/919913136994"
+                    href="mailto:airavats1@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
-                    aria-label="Chat with us on WhatsApp"
+                    aria-label="Chat with us on Gmail"
                   >
                     <div className="w-11 h-11 rounded-full border-2 border-gray-400 flex items-center justify-center transition-all duration-300 group-hover:border-[#dec3a0] group-hover:bg-[#dec3a0] transform group-hover:-translate-y-1 group-hover:shadow-lg">
                       <BiLogoGmail className="text-gray-300 text-xl transition-colors duration-300 group-hover:text-[#040936]" />
@@ -1410,7 +1414,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Copyright */}
             <div className="border-t border-gray-800 pt-6 text-center">
               <p className="text-gray-400 text-[14px]">
