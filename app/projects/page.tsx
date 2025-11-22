@@ -28,10 +28,10 @@ function MilestoneCard({ project, index, isLeft }: { project: Project; index: nu
         className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-[#040936] overflow-hidden cursor-pointer"
       >
         {/* Corner Accent */}
-        <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-[#040936]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#040936]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Achievement Badge */}
-        <div className="absolute -top-3 -left-3 w-14 h-14 bg-linear-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg z-10 group-hover:scale-110 transition-transform duration-300">
+        <div className="absolute -top-3 -left-3 w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg z-10 group-hover:scale-110 transition-transform duration-300">
           <Award className="w-7 h-7 text-white" />
         </div>
 
@@ -39,7 +39,7 @@ function MilestoneCard({ project, index, isLeft }: { project: Project; index: nu
           {/* Header with Number and Status */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-lg bg-linear-to-br from-[#040936] to-[#0a1147] flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#040936] to-[#0a1147] flex items-center justify-center shadow-md">
                 <span className="text-white font-bold text-lg">#{project.number}</span>
               </div>
               <div className="flex flex-col">
@@ -77,7 +77,7 @@ function MilestoneCard({ project, index, isLeft }: { project: Project; index: nu
         </div>
 
         {/* Bottom Accent Bar */}
-        <div className="h-1.5 bg-linear-to-r from-[#040936] via-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+        <div className="h-1.5 bg-gradient-to-r from-[#040936] via-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
       </div>
     </Link>
   );
@@ -107,19 +107,19 @@ function MilestoneTimeline({ projects }: { projects: Project[] }) {
   return (
     <div className="relative milestone-timeline-container">
       {/* Central Timeline Line */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-linear-to-b from-[#040936] via-blue-600 to-purple-600 transform -translate-x-1/2 hidden md:block" />
+      <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#040936] via-blue-600 to-purple-600 transform -translate-x-1/2 hidden md:block" />
 
       {/* Mobile Timeline Line */}
-      <div className="absolute left-8 top-0 bottom-0 w-1 bg-linear-to-b from-[#040936] via-blue-600 to-purple-600 md:hidden" />
+      <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-[#040936] via-blue-600 to-purple-600 md:hidden" />
 
       {/* Start Marker */}
       <div className="flex justify-center mb-16">
         <div className="relative z-20">
-          <div className="w-20 h-20 rounded-full bg-linear-to-br from-green-400 to-emerald-600 border-4 border-white shadow-xl flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 border-4 border-white shadow-xl flex items-center justify-center">
             <TrendingUp className="w-10 h-10 text-white" />
           </div>
           <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-            <span className="bg-linear-to-r from-green-500 to-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
+            <span className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
               Our Journey
             </span>
           </div>
@@ -148,7 +148,7 @@ function MilestoneTimeline({ projects }: { projects: Project[] }) {
                   
                   {/* Node Circle */}
                   <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border-4 border-[#040936] shadow-xl flex items-center justify-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-linear-to-br from-[#040936] to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-inner">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#040936] to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-inner">
                       {index + 1}
                     </div>
                   </div>
@@ -160,7 +160,7 @@ function MilestoneTimeline({ projects }: { projects: Project[] }) {
 
               {/* Connecting Line (Desktop) */}
               <div
-                className={`hidden md:block absolute top-12 h-0.5 bg-linear-to-r transition-all duration-700 ${
+                className={`hidden md:block absolute top-12 h-0.5 bg-gradient-to-r transition-all duration-700 ${
                   isLeft
                     ? 'left-12 right-1/2 from-[#040936] to-gray-300 mr-10'
                     : 'right-12 left-1/2 from-gray-300 to-[#040936] ml-10'
@@ -190,12 +190,12 @@ function MilestoneTimeline({ projects }: { projects: Project[] }) {
         }`}
       >
         <div className="relative z-20">
-          <div className="absolute inset-0 rounded-full bg-linear-to-br from-yellow-400 to-orange-500 blur-xl opacity-50 animate-pulse" />
-          <div className="relative w-24 h-24 rounded-full bg-linear-to-br from-yellow-400 via-orange-500 to-red-500 border-4 border-white shadow-xl flex items-center justify-center">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 blur-xl opacity-50 animate-pulse" />
+          <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 border-4 border-white shadow-xl flex items-center justify-center">
             <Award className="w-12 h-12 text-white" />
           </div>
           <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-            <span className="bg-linear-to-r from-yellow-500 to-orange-600 text-white px-5 py-2 rounded-full text-xs font-bold shadow-lg">
+            <span className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-5 py-2 rounded-full text-xs font-bold shadow-lg">
               Achievement Milestone
             </span>
           </div>
@@ -256,9 +256,9 @@ export default function TimelineDemo() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Hero Section */}
-      <div className="relative bg-linear-to-r from-[#040936] to-[#0a1147] text-white py-20 px-4 overflow-hidden">
+      <div className="relative bg-gradient-to-r from-[#040936] to-[#0a1147] text-white py-20 px-4 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 border-2 border-white rounded-full" />
