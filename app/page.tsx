@@ -668,7 +668,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Leader 2 - Mr. Manthan Gadhavi */}
+              {/* Leader 3 - Mr. Manthan Gadhavi */}
               <motion.div
                 className="backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-[#040936] transform hover:-translate-y-4 transition-all duration-500 group relative"
                 variants={fadeInUp}
@@ -735,7 +735,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Leader 3 - Mr. Mahavir Gadhavi */}
+              {/* Leader 4 - Mr. Mahavir Gadhavi */}
               <motion.div
                 className="backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-[#040936] transform hover:-translate-y-4 transition-all duration-500 group relative"
                 variants={fadeInUp}
@@ -1098,8 +1098,8 @@ export default function Home() {
                     </svg>
                     <div>
                       <p className="font-semibold text-[#040936] text-[15px]">Address</p>
-                      <p className="text-gray-600 text-[15px] leading-relaxed">1st Floor, Akash Complex, Nilkamal Chowk, Khodiyar Colony, Jamnagar, Gujarat - 361 006</p><br></br>
-                      <p className="text-gray-600 text-[15px] leading-relaxed">H-230, OPP. PANCHKOSHI 'B' POLICE STATION, DARED GIDC, PHASE 2, JAMANGAR, Gujarat -  361 004</p>
+                      <p className="text-gray-600 text-[15px] leading-relaxed">1st Floor, Akash Complex, Nilkamal Chowk, Khodiyar Colony, Jamnagar, Gujarat - 361 006</p>
+                      <p className="text-gray-600 text-[15px] leading-relaxed">H-230, OPP. PANCHKOSHI 'B' POLICE STATION, DARED GIDC, PHASE 2, JAMANGAR, Gujarat - 361 004</p>
                     </div>
                   </div>
 
