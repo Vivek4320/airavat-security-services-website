@@ -231,11 +231,9 @@ export default function Home() {
             <div className="flex justify-between items-center h-20">
               {/* Logo */}
               <motion.a
-                href="#home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleScrollToSection('home');
-                }}
+                href="/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"}
                 className="flex items-center space-x-3 group"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
